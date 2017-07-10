@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue</title>
+	<script src="../js/plugin/vue.js"></script>
+</head>
+<body>
+	<ul id="exp1">
+	<p>对象数组</p>
+		<li v-for="(item,index) in items">
+			{{index}}-{{item.message}}
+		</li>
+	<p>数组</p>
+		<li v-for="(item,index) in arrayItems">
+			{{index}}-{{item}}
+		</li>
+	<p>对象</p>
+		<li v-for="(value,key,index) in objectItems">
+			{{index}}-{{key}}-{{value}}
+		</li>
+	<p>数值</p>
+		<li v-for="n in 4">
+			{{n}}
+		</li>
+	<p>过滤奇数数值(computed)</p>
+		<li v-for="n in evenNumber">
+			{{n}}
+		</li>
+	<p>过滤奇数数值(method)</p>
+		<li v-for="n in even(numbers)">
+			{{n}}
+		</li>
+	</ul>
+
+
+	<div id="exp2">
+		<button v-on:click="count++">增加1</button>
+		<button v-on:click="increace($event,count)">减少1</button>
+		<input type="text" placeholder="修改次数"  v-on:keyup.enter="submit">
+		<input type="text" placeholder="v-model同步修改次数" v-model="count" v-on:input="inputing(count,$event)">
+		<input type="text" placeholder="v-model.lazy同步修改次数"  v-model.lazy="count" v-on:input="inputChange(count,$event)">
+		<p>这个按钮被点击了{{count}}次</p>
+	</div>
+
+	<div id="exp3">
+		<!-- 字符串模板 -->
+		<sub-component self-message="我是直接传递给子组件的字符串"></sub-component>
+		<sub-component v-bind:self-message="message"></sub-component>
+		<sub-component v-bind:owner-message="myMessage"></sub-component>
+		<!-- 非字符串模板 -->
+		<sub-tpl v-bind:my-message="myMessage"></sub-tpl>
+	</div>
+
+
+	<script type="text/x-template" id="sub-tpl">
+	<ul>
+		<li v-for="item in items">{{myMessage}}{{item}}</li>
+	</ul>
+	</script>
+
+
+	<script type="text/javascript">
+	var exp1=new Vue({
+		el:'#exp1',
+		data:{
+			items:[
+				{message: 'Foo' },
+				{message: 'Bar' }
+		    ],
+		    arrayItems:['yz','ys'],
+		    objectItems:{
+				FirstName: 'John',
+				LastName: 'Doe',
+				Age: 30
+		    },
+		    numbers:[1,2,3,4,5,6,7]
+		}, 
+		computed:{
+			evenNumber:function(){
+				return this.numbers.filter(function(number){
+					// console.log(number)
+					return number%2===0;
+				})
+			}
+		},
+		methods:{
+			even:function(numbers){
+				return numbers.filter(function(number){
+					return number%2===0;
+				})
+			}
+		}
+	});
+	console.log(exp1)
+	// 改变数据
+	// 当你利用索引直接设置一个项时，例如： vm.items[indexOfItem] = newValue
+	// 当你修改数组的长度时，例如： vm.items.length = newLength
+	exp1.arrayItems[0]='zy';
+	console.log(exp1.arrayItems);
+	// 但是vueDOM不能检测到变动 因此应以下任意一种方法代替
+	// Vue.set(exp1.arrayItems,0,'zy');
+	exp1.arrayItems.splice(0,1,'zy')
+	console.log(exp1.arrayItems);
+	// vm.items.splice(newLength)
+
+// 事件
+	var exp2=new Vue({
+		el:'#exp2', 
+		data:{
+			count:0 
+		}, 
+		methods:{
+			increace:function(event,count){
+				console.log(event)
+				console.log(count)
+				this.count--;
+			}, 
+			submit:function(event){
+				console.log(event)
+				console.log(event.target.value)
+				// this.count=event.target.value;
+			}, 
+			inputing:function(count,event){
+				console.log('在input事件中同步v-model绑定的数据')
+				console.log(event)
+			}, 
+			inputChange:function(count,event){
+				console.log('在Change事件中同步v-model绑定的数据')
+				console.log(event)
+			}
+		}
+	});
+
+
+// 组件通讯
+	var objData={num:0,count:0};//
+	Vue.component('sub-component',{
+		props:['selfMessage','ownerMessage'],//子组件接父组件传递的数据的变量名
+		template:'<div><button v-on:click="changeObj">{{count}}---{{obj.num}}</button><p>{{selfMessage}}{{ownerMessage}}</p></div>', 
+		data:function(){//data需是function 返回值需是object
+			return {
+				// count:objData.count,
+				count:0,
+				obj:objData,
+			};
+		},
+		methods:{
+			changeCount:function(event){//只会改变自己内部的count  
+				this.count++;
+				console.log(event)
+			}, 
+			changeObj:function(event){//改变所有引用obj的值
+				this.obj.num++;
+				console.log(event)
+			}
+		}
+	});
+
+	Vue.component('sub-tpl',{
+		props:['myMessage'],
+		template:'#sub-tpl', 
+		data:function(){
+			return {
+				items:['1','2','3']
+			}
+		}
+	});
+	var exp3=new Vue({
+		el:'#exp3', 
+		data:{
+			message:'我是传给子组件的父组件data', 
+			myMessage:'case'
+		},
+		methods:{
+
+		}
+	});
+	console.log(exp3)
+
+	</script>
+	
+</body>
+</html>

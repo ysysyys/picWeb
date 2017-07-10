@@ -1,0 +1,78 @@
+ul.cl{
+	margin-left: 300px
+}
+ul.cl li>a{
+    margin-right: 14px;
+}
+.content{
+	    border: 1px solid #909090;
+margin-top: 30px;
+height: auto;
+border-bottom: none;
+}
+.table-content{
+	width: 1000px;
+	    float: left;
+	margin:20px 40px;
+	    border: 1px solid #ddd;
+border-bottom: none;
+border-top: none;
+}
+table td,table th{
+	font-size: 14px!important;
+	text-align: center!important;
+}
+.table-bg thead th {
+    background-color: #dddddd;
+}
+.tab-menu{
+	float: left;
+	    width: 240px;
+	    margin: 20px 0;
+border: 1px solid #ddd;
+}
+.tab-menu li{
+	list-style: none;
+	height: 47px;
+	line-height: 47px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+	cursor:pointer;
+}
+
+.tab-menu li:last-child{
+	border:none;
+}
+.tab-menu li.active{
+	background: #ddd;
+}
+.tab-menu li:hover{
+	background: rgba(211,211,211,0.35);
+
+}
+.btn-primary-outline:hover{
+	background: #5a98de;
+	color: #fff!important;
+	border-color:#5a98de
+}
+.btn-primary-outline.op2{
+	color: #3bb4f2;
+	border-color: #3bb4f2;
+}
+.btn-primary-outline.op2:hover{
+	background: #3bb4f2;
+}
+.btn-primary-outline.op3{
+	color: #5eb95e;
+	border-color: #5eb95e;
+}
+.btn-primary-outline.op3:hover{
+	background: #5eb95e;
+}
+.btn-primary-outline.op4{
+	color: #dd514c;
+	border-color: #dd514c;
+}
+.btn-primary-outline.op4:hover{
+	background: #dd514c;
+}

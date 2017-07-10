@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<link rel="stylesheet" href="../css/index.css">
+	<link rel="stylesheet" href="../css/idangerous.swiper.css">
+
+	<script data-main='../js/apps/index.js' src='../js/lib/require.js'></script>
+	<script>
+	window.onmessage=function(e){
+		e=e||event;
+		alert(e.data)
+	}
+</script>
+</head>
+<body>
+<div class="top-header">
+	<div class="header">
+		<p class="left">
+			<span class="active">personal</span>
+			<span>business</span>
+			<span>developer</span>
+		</p>
+		<p class="right">
+			<span>SweetAPP</span>
+			<span>|</span>
+			<span class="anim"  id="services-switch">services <i></i></span>
+		</p>
+		
+	</div>
+	<ul class="services hidden" id="services">
+		<li>call us</li>
+		<li>self-service</li>
+		<li>advice</li>
+	</ul>
+	<div class="main-nav">
+		<div class="logo"><h1>Sweet time</h1></div>
+		<ul class="nav">
+			<li class="active"><a>home</a></li>
+			<li><a href="family.html">family</a></li>
+			<li><a href="friends.html">friends</a></li>
+			<li class="split-li"><a>daily</a></li>
+			<li><a>emotion</a></li>
+		</ul>
+	</div>
+</div>
+<video width="1440px" height="100%" autoplay id="video-player" class="hidden">
+	<source src="https://t.alipayobjects.com/images/T1T78eXapfXXXXXXXX.mp4" type="video/mp4">
+</video>
+<div class="containter"  id="main-swiper">
+	<div class="swiper-container"  style="width:100%;height:100%">
+		<div class="swiper-wrapper"  style="width:100%;height:100%">
+			<div class="swiper-slide bg-img" name="swipe-item" style="background-image:url('../image/friends.jpg');opacity: 0.98;">
+				
+			</div>
+			<div class="swiper-slide bg-img" name="swipe-item" style="background-image:url('../image/life.jpg')">
+				<div class="tip section2">
+					<ul>
+						<li>
+							<i>#</i>
+							<div>
+								<span>delicacy</span><span>美食当家,一枚吃货</span>
+							</div>
+						</li>
+						<li>
+							<i>~</i>
+							<div>
+								<span>friendsCircle</span><span>好友分享,感受你我</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="swiper-slide bg-img" name="swipe-item" style="background-image:url('https://t.alipayobjects.com/images/T1yXVfXfddXXXXXXXX.jpg');background-image:url('../image/seasons.jpg')">
+				<div class="tip">
+					<ul>
+						<li>
+							<i>#</i>
+							<div>
+								<span>感恩四季</span><span>today is a nice day</span>
+							</div>
+						</li>
+						<li>
+							<i>~</i>
+							<div>
+								<span>留下自拍</span><span>you are beatuiful</span>
+							</div>
+						</li>
+						<li>
+							<i>!</i>
+							<div>
+								<span>记录点滴</span><span>make some noise</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="pagination"></div>
+	</div>
+	<div class="logo-content">
+		<div class="logo"></div>
+		<p class="btn">
+			<a href="javascript:;" class="login active">login in</a>
+			<a href="javascript:;" class="regist">register</a>
+		</p>
+	</div>
+	<a class="gonext" id="gonext" href="javascript:;">\/</a>
+</div>
+</body>
+</html>

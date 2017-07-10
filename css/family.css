@@ -1,0 +1,95 @@
+*{
+	padding:0 0;
+	margin:0 0;
+	font: 12px/1.5 "Microsoft YaHei",tahoma,arial,Hiragino Sans GB,\5b8b\4f53;
+	list-style:none;
+	overflow-x: hidden;
+}
+body{
+	/*background:rgba(195, 218, 194, 0.66);*/
+}
+.header{
+	    width: 100%;
+        height: 400px;
+    background: url("https://zos.alipayobjects.com/cmsmng/cms/images/ir4eqla3/3cbf66a5-5ab8-4cc3-8089-61a0fec45a59.png") no-repeat;
+
+    background-size: 100% 200%;
+	position: relative;
+}
+.header>h1{
+	font-size: 30px;
+	color:pink;
+	position: absolute;
+	top:20px;
+	left: 20px
+}
+.header .foryou{
+	position: absolute;
+	top: 110px;
+    left: 175px;
+}
+.foryou>p{
+	color: pink;
+	margin-bottom: 10px
+}
+.foryou>p:first-child{
+	font-size: 16px;
+}
+.foryou>p:first-child+p{
+	font-size: 20px;
+}
+.foryou>p:first-child+p+p{
+	font-size: 18px;
+}
+.header .pic-wrap{
+        position: absolute;
+    height: 310px;
+    width: 800px;
+    
+    bottom: 10%;
+    left: 40.5%;
+    /*border: 5px solid pink;*/
+}
+.header .pic-wrap .swiper-wrapper .swiper-slide{
+	background-size: 100% 100%;
+	/*border: 5px solid #a26060;
+    border-radius: 10px;*/
+}
+.container{
+	width: 100%;
+	padding: 20px 200px;
+}
+.container h1{
+    font-size: 22px;
+}
+.container h2{
+    font-size: 14px;
+    color: #585858;
+}
+.container .piece{
+    margin-left: 36px;
+	display: flex;
+	width: 700px;
+	/*height: 400px;*/
+	margin-top: 20px;
+	flex-direction:row;
+	flex-wrap:wrap;
+	justify-content:space-around;
+    -webkit-justify-content: space-around;
+    /*overflow: */
+}
+.container .piece>div{
+	/*width: 40%;*/
+    width: 220px;
+	flex-shrink:50%;
+	height:360px;
+	background-size: 100% 100%;
+    margin-bottom: 50px;
+}
+.container .piece>div.right{
+	width: 400px;
+	height:300px;
+	margin-top: 30px;
+	border-left:1px solid #a09696;
+
+}

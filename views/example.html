@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>example</title>
+	<link rel="stylesheet" type="text/css" href="../css/H-ui.reset.css">
+	<link rel="stylesheet" type="text/css" href="../css/H-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="../css/example.css">
+	<script data-main="../js/apps/example.js" src="../js/lib/require.js"></script>
+</head>
+<body>
+<!-- 页面h-ui框架 脚本regular框架 -->
+	<header class="navbar-wrapper">
+		<div class="navbar navbar-black">
+			<div class="container cl">
+				<a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">LOGO后台管理</a>
+				<a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+				<nav class="nav navbar-nav nav-collapse" role="navigation" id="Hui-navbar">
+					<ul class="cl">
+						<li class="current"><a href="#">视频</a></li>
+						<li><a href="#">系统管理</a></li>
+						<li><a href="#">内容管理</a></li>
+						<li><a href="#">统计管理</a></li>
+
+						<li><a href="#">联系我们</a></li>
+					</ul>
+				</nav>
+				<nav class="navbar-userbar hidden-xs">
+					
+				</nav>
+			</div>
+		</div>
+	</header>
+	
+	<div class="content">
+		<div class="tab-menu" id="menu_rgl">
+			
+		</div>
+		<div class="table-content" id="table_rgl">
+			
+		</div>
+
+		
+	</div>
+
+
+	<!-- tab模板 -->
+	<script type="text/regular" id="menu_tpl">
+		<ul>
+		{#list tabData as item}
+			<li r-class={{"active":activeIndex==item_index}} on-click={this.tabChange($event,item_index)}><a href={item.url}>{item.name}</a></li>
+		{/list}
+
+			
+		</ul>
+	</script>
+	<!-- 自媒体账号表格模板 -->
+	<script type="text/regular" id="table_tpl">
+		<table class="table table-border  table-bg">
+				<thead>
+					<tr>
+						<th></th>
+						<th>ID</th>
+						<th>来源网站</th>
+						<th>频道</th>
+						<th>名称</th>
+						<th class="url">URL</th>
+						<th>--</th>
+
+						<th>
+							操作
+							<a href="javascript:;" class="btn btn-primary-outline  radius add" on-click={this.toAddItem($event)}>添加</a>
+
+						</th>
+						
+					</tr>
+					
+				</thead>
+
+				<tbody id="body" ref="table_body">
+				{#list tableData as item}
+					<tr>
+						<td></td>
+						<td>{item.id}</td>
+						<td>{item.video_source}</td>
+						<td>{item.video_channel}</td>
+						<td>{item.we_media_name}</td>
+						<td class="url" title={item.we_media_url}>{item.we_media_url}</td>
+						<td></td>
+						<td>
+						<!--
+							<a href="javascript:;" class="btn btn-primary-outline  radius" on-click={this.operate('0')}>op1</a>
+							<a href="javascript:;" class="btn btn-primary-outline radius op2" on-click={this.operate('1')}>op2</a>
+							<a href="javascript:;" class="btn btn-primary-outline radius op3" on-click={this.operate('2')}>op3</a>
+						-->
+							<a href="javascript:;" class="btn btn-primary-outline radius op4" on-click={this.deleteItem($event,item.id)}>删除</a>
+
+						</td>
+					</tr>
+				{/list}
+					
+				</tbody>
+			
+			</table>
+	</script>
+	<!-- 任务管理表格模板 -->
+	<script type="text/regular" id="task_tpl">
+		<table class="table table-border  table-bg">
+				<thead>
+					<tr>
+						<th></th>
+						<th>ID</th>
+						<th>来源网站</th>
+						<th>频道</th>
+						<th>自媒体</th>
+						<th class="url">URL</th>
+						<th>采集程序</th>
+
+						<th>是否采集</th>
+
+						<th>
+							操作
+							<a href="javascript:;" class="btn btn-primary-outline  radius add" on-click={this.toAddItem($event)}>添加</a>
+
+						</th>
+						
+					</tr>
+					
+				</thead>
+
+				<tbody id="body" ref="table_body">
+				{#list taskData as item}
+					<tr>
+						<td></td>
+						<td>{item.id}</td>
+						<td>{item.video_source}</td>
+						<td>{item.video_channel}</td>
+						<td>{item.video_we_media}</td>
+						<td class="url" title={item.task_url}>{item.task_url}</td>
+						<td>{item.crawlmodel}</td>
+						<td>{item.is_crawl==1?'是':'否'}</td>
+						<td>
+							<a href="javascript:;" class="btn btn-primary-outline radius op4" on-click={this.deleteTask($event,item.id)}>删除</a>
+							<a href="javascript:;" class="btn btn-primary-outline radius" r-class={{"op3":item.is_crawl==0,"op2":item.is_crawl==1}} on-click={this.disable($event,item.id,item.is_crawl)}>{item.is_crawl==1?'禁用':'启用'}</a>
+						</td>
+					</tr>
+				{/list}
+					
+				</tbody>
+			
+			</table>
+	</script>
+	<!-- 自媒体添加栏 -->
+	<script type="text/regular" id="add_tpl">
+		<tr ref="add_item">
+			<td></td>
+			<td></td>
+			<td>
+				<select class="select" size="1" name="demo1" r-model={value[1]}>
+					<option value="" selected>默认</option>
+				{#list sourceData as item}
+					<option value={item.id}>{item.source_name}</option>
+				{/list}
+				</select>
+			</td>
+			<td>
+				<select class="select" size="1" name="demo1" r-model={value[2]}>
+					<option value="0" selected>默认</option>
+				{#list channelData as item}
+					<option value={item.id}>{item.name}</option>
+				{/list}
+				</select>
+			</td>
+			<td><input r-model={value[3]} type='text'></td>
+			<td class="url"><input class="url" r-model={value[4]} type='text'></td>
+			
+			<td></td>
+		
+			<td>
+				<a href="javascript:;" class="btn btn-primary-outline  radius" on-click={this.addItem($event)}>确定</a>
+				<a href="javascript:;" class="btn btn-primary-outline radius op2" on-click={this.remove($event)}>取消</a>
+				
+			</td>
+		</tr>
+	</script>
+	<!-- 任务添加栏 -->
+	<script type="text/regular" id="add_task_tpl">
+		<tr ref="add_item">
+			<td></td>
+			<td></td>
+			<td>
+				<select class="select" size="1" name="demo1" on-change={this.change($event,'1')} r-model={value[1]}>
+					<option value="" selected>默认</option>
+					{#list sourceData as item}
+					<option value={item.id} >{item.source_name}</option>
+					{/list}
+				</select>
+			</td>
+			<td>
+				<select class="select" size="1" name="demo1" on-change={this.change($event,'2')} r-model={value[2]}>
+					<option value="" selected>默认</option>
+					{#list channelData as item}
+					<option value={item.id} >{item.name}</option>
+					{/list}
+				</select>
+			</td>
+			<td>
+				<select class="select" size="1" name="demo1" on-change={this.mediaChange($event)} r-model={value[3]}>
+					<option value="" selected>默认</option>
+					{#list mediaData as item}
+					<option value={item.id} data-sourceId={item.video_source_id} data-source={item.video_source} data-channelId={item.video_channel_id} data-channel={item.video_channel} data-url={item.we_media_url}>{item.we_media_name}</option>
+					{/list}
+				</select>
+			</td>
+			<td class="url"><input class="url"  r-model={value[4]} on-input={this.urlChange($event)} type='text'></td>
+			<td>
+				<select class="select" size="1" name="demo1" r-model={value[5]}>
+					<option value="" selected>默认</option>
+				{#list crawlData as item}
+					<option value={item}>{item}</option>
+				{/list}
+				</select>
+			</td>
+			<td>
+				<select class="select" size="1" name="demo1" r-model={value[6]}>
+						<option value="0">否</option>
+					
+						<option value="1">是</option>
+				</select>
+			</td>
+		
+			<td>
+				<a href="javascript:;" class="btn btn-primary-outline  radius" on-click={this.addItem($event)}>确定</a>
+				<a href="javascript:;" class="btn btn-primary-outline radius op2" on-click={this.remove($event)}>取消</a>
+				
+			</td>
+		</tr>
+	</script>
+
+	
+</body>
+</html>
