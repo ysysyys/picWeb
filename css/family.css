@@ -93,3 +93,17 @@ body{
 	border-left:1px solid #a09696;
 
 }
+.bar{
+	position: absolute;
+	right: 0;
+	cursor: pointer;
+}
+.bar img{
+	width: 100px;
+	height: 120px;
+}
+.bar figcaption{
+	text-align: center;
+	font-size: 18px;
+    color: #754b25;
+}

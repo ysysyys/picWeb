@@ -8,12 +8,11 @@
 
 	<script data-main='../js/apps/index.js' src='../js/lib/require.js'></script>
 	<script>
-	 window.onmessage=function(e){
-		console.log("local default v3.0")
-	 	e=e||event;
-	 	alert(e.data)
-	 }
-	</script>
+	window.onmessage=function(e){
+		e=e||event;
+		alert(e.data)
+	}
+</script>
 </head>
 <body>
 <div class="top-header">
@@ -28,21 +27,21 @@
 			<span>|</span>
 			<span class="anim"  id="services-switch">services <i></i></span>
 		</p>
-		
 	</div>
+	
 	<ul class="services hidden" id="services">
 		<li>call us</li>
 		<li>self-service</li>
 		<li>advice</li>
 	</ul>
 	<div class="main-nav">
-		<div class="logo"><h1>Sweet time</h1></div>
+		<div class="logo"><h1>Sweet Web</h1></div>
 		<ul class="nav">
 			<li class="active"><a>home</a></li>
 			<li><a href="family.html">family</a></li>
 			<li><a href="friends.html">friends</a></li>
-			<li class="split-li"><a>daily</a></li>
-			<li><a>emotion</a></li>
+			<li class="split-li"><a href="exercise.html">exercise</a></li>
+			<li><a href="resume.html">resume</a></li>
 		</ul>
 	</div>
 </div>
